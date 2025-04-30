@@ -1,4 +1,10 @@
-# Development
+# Mitdevcat
+
+why I hate myself doing this portafolio in rust ?
+
+- "Writen for humans by a human"
+
+## Development
 
 Your new bare-bones project includes minimal organization with a single `main.rs` file and a few assets.
 
@@ -9,8 +15,6 @@ project/
 │  ├─ main.rs # main.rs is the entry point to your application and currently contains all components for the app
 ├─ Cargo.toml # The Cargo.toml file defines the dependencies and feature flags for your project
 ```
-
-
 
 ### Serving Your App
 
@@ -29,3 +33,9 @@ dx serve --platform desktop
 ## Resources
 
 - Icons (Font awesomne)[https://github.com/FortAwesome/Font-Awesome]
+
+## TODO
+
+- [ ] first version
+- [ ] Use github actions to build the site and run it using github pages.
+- [ ] Separate components in files and folders.
