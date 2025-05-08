@@ -1,3 +1,5 @@
+mod components;
+use components::header::Header;
 use dioxus::prelude::*;
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
@@ -20,30 +22,20 @@ fn App() -> Element {
 }
 
 #[component]
-pub fn Header() -> Element {
-    rsx! {
-        div {
-            id: "header",
-            p { "MitDevcat 🫠"}
-          }
-    }
-}
-
-#[component]
 pub fn GithubCard() -> Element {
-  rsx! {
-    div {
-      id: "github-card",
-      a {
-        href: "http://www.github.com/mitdevcat",
-        p { "Github" }
-        img {
-          src: GITHUB_SVG,
-          id: "github-logo",
+    rsx! {
+      div {
+        id: "github-card",
+        a {
+          href: "http://www.github.com/mitdevcat",
+          p { "Github" }
+          img {
+            src: GITHUB_SVG,
+            id: "github-logo",
+          }
         }
       }
     }
-  }
 }
 
 #[component]
