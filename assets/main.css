@@ -1,4 +1,5 @@
 :root {
+    color-scheme: light dark;
     /* CSS HEX */
     --dark-purple: #190b28ff;
     --antiflash-white: #eef0f2ff;
@@ -6,11 +7,14 @@
     --rebecca-purple: #623a92ff;
     --chinese-violet: #7e6b8fff;
     --thistle: #e0cff2ff;
+    --pitch-black: #220101;
+
+    --bg-base: light-dark(var(--dark-purple), var(--dark-purple));
 }
 
 /* App-wide styling */
 body {
-    background-color: var(--dark-purple);
+    background-color: var(--bg-base);
     color: #ffffff;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 20px;
