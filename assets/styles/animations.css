@@ -1,0 +1,50 @@
+/* initial animation */
+
+/* Definición de las animaciones */
+@keyframes reveal-radial {
+    0% {
+        clip-path: circle(0% at center);
+        opacity: 1;
+    }
+    99% {
+        clip-path: circle(150% at center);
+        opacity: 1;
+    }
+    100% {
+        clip-path: circle(150% at center);
+        opacity: 0; /* Hacer que desaparezca al final */
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Contenedor principal que contiene toda la página excepto la imagen hero */
+.content-container {
+    opacity: 0;
+    animation: fade-in 1s ease-in-out 0.8s forwards;
+    animation-fill-mode: forwards !important;
+    position: relative;
+    z-index: 0;
+}
+
+/* Estilo para el overlay que se creará dinámicamente */
+#page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-base);
+    z-index: 1;
+    animation: reveal-radial 1.5s ease-in-out forwards;
+    animation-fill-mode: forwards !important;
+    transform-origin: center;
+    pointer-events: none;
+}
