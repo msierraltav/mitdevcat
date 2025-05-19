@@ -18,6 +18,8 @@ body {
     color: #ffffff;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 20px;
+    overflow-x: hidden;
+    position: relative;
 }
 
 #links {

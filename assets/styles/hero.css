@@ -4,4 +4,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 3;
+}
+
+#hero-logo {
+    position: relative;
+    z-index: 10;
+    transition: transform 0.5s ease-in-out;
+}
+
+#hero-logo:hover {
+    transform: scale(1.05);
 }

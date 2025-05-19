@@ -6,6 +6,7 @@ use dioxus::prelude::*;
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const MAIN_CSS: Asset = asset!("/assets/main.css");
 const HEADER_CSS: Asset = asset!("/assets/styles/header.css");
+const ANIMATION_CSS: Asset = asset!("/assets/styles/animations.css");
 const HEADER_SVG: Asset = asset!("/assets/header.svg");
 const GITHUB_SVG: Asset = asset!("/assets/github.svg");
 
@@ -19,9 +20,14 @@ fn App() -> Element {
         document::Link { rel: "icon", href: FAVICON }
         document::Link { rel: "stylesheet", href: MAIN_CSS }
         document::Link { rel: "stylesheet", href: HEADER_CSS }
-        Header {}
+        document::Link { rel: "stylesheet", href: ANIMATION_CSS }
         Hero {}
-        GithubCard {}
+
+        div{
+            class:"content-container",
+            Header {}
+            GithubCard {}
+        }
     }
 }
 
