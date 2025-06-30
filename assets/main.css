@@ -1,7 +1,7 @@
 :root {
     color-scheme: light dark;
-    /* CSS HEX */
-    --dark-purple: #190b28ff;
+    /* CSS HEX - Tema Oscuro */
+    --dark-purple: #0d0612ff; /* Más oscuro, casi negro con un tinte púrpura */
     --antiflash-white: #eef0f2ff;
     --fire-engine-red: #ca162bff;
     --rebecca-purple: #623a92ff;
@@ -9,17 +9,44 @@
     --thistle: #e0cff2ff;
     --pitch-black: #220101;
 
-    --bg-base: light-dark(var(--dark-purple), var(--dark-purple));
+    /* Variables de tema por defecto (oscuro) */
+    --bg-primary: var(--dark-purple);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --border-primary: rgba(255, 255, 255, 0.15);
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+/* Tema claro */
+:root.light-theme {
+    --bg-primary: #f8f9fa;
+    --text-primary: #212529;
+    --text-secondary: rgba(33, 37, 41, 0.8);
+    --border-primary: rgba(0, 0, 0, 0.15);
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(0, 0, 0, 0.1);
+}
+
+/* Clase para tema oscuro explícito */
+:root.dark-theme {
+    --bg-primary: var(--dark-purple);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --border-primary: rgba(255, 255, 255, 0.15);
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
 }
 
 /* App-wide styling */
 body {
-    background-color: var(--bg-base);
-    color: #ffffff;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 20px;
     overflow-x: hidden;
     position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #links {

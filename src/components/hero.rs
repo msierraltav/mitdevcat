@@ -1,37 +1,29 @@
 use dioxus::prelude::*;
-use web_sys::window;
-
-const LOGO: Asset = asset!("/assets/Mit-logo-light.png");
-const ANIMATION_CSS: Asset = asset!("/assets/styles/animations.css");
+use crate::{ThemeContext, MIT_LOGO_LIGHT, MIT_LOGO_DARK};
 
 #[component]
 pub fn Hero() -> Element {
-    use_effect(|| {
-        if let Some(window) = window() {
-            if let Some(document) = window.document() {
-                let body = document.body().unwrap();
-
-                if document.get_element_by_id("page-overlay").is_none() {
-                    let overlay = document.create_element("div").unwrap();
-                    overlay.set_id("page-overlay");
-                    overlay.set_class_name("page-overlay");
-                    body.append_child(&overlay).unwrap();
-                }
-            }
-        }
-    });
-
+    let theme_context = use_context::<Signal<ThemeContext>>();
+    
+    // Seleccionar el logo según el tema
+    let logo_src = if theme_context().is_dark {
+        MIT_LOGO_LIGHT // Logo claro para fondo oscuro
+    } else {
+        MIT_LOGO_DARK // Logo oscuro para fondo claro
+    };
+    
     rsx! {
-        document::Link{ rel: "stylesheet", href: ANIMATION_CSS}
-        div {
-            id: "hero",
-            class: "hero-container",
-            img {
-                src: LOGO,
-                id: "hero-logo",
-                class: "hero-img-visible",
-                height: "300px",
-                width: "300px"
+        div { class: "hero-section",
+            // Sección vacía (1/3 izquierda)
+            div { class: "hero-left" }
+            
+            // Logo (2/3 derecha)  
+            div { class: "hero-right",
+                img {
+                    src: logo_src,
+                    alt: "MIT Logo",
+                    class: "hero-image"
+                }
             }
         }
     }
