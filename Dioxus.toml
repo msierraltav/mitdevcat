@@ -10,10 +10,9 @@ base_path = "mitdevcat"  # Cambia esto por el nombre de tu repositorio
 watch_path = ["src", "assets"]
 
 [web.resource]
-dev = true
 style = ["assets/main.css", "assets/styles/header.css", "assets/styles/animations.css"]
 
-[web.proxy]
+[web.resource.dev]
 
 [bundle]
 out_dir = "docs"  # GitHub Pages leerá desde la carpeta docs
