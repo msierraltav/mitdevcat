@@ -1,4 +1,5 @@
 use dioxus::prelude::*;
+use dioxus_i18n::t;
 use crate::{ThemeContext, MIT_LOGO_LIGHT, MIT_LOGO_DARK};
 
 #[component]
@@ -14,8 +15,13 @@ pub fn Hero() -> Element {
     
     rsx! {
         div { class: "hero-section",
-            // Sección vacía (1/3 izquierda)
-            div { class: "hero-left" }
+            // Sección vacía (1/3 izquierda) - ahora con texto de bienvenida
+            div { class: "hero-left",
+                div { class: "hero-text",
+                    h1 { class: "hero-title", {t!("hero-welcome")} }
+                    p { class: "hero-description", {t!("hero-description")} }
+                }
+            }
             
             // Logo (2/3 derecha)  
             div { class: "hero-right",
