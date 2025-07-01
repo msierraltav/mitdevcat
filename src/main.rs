@@ -57,10 +57,10 @@ fn App() -> Element {
             Hero {}
             
             // About Section
-            AboutSection {}
+            // AboutSection {}
             
             // Projects Section
-            ProjectsSection {}
+            // ProjectsSection {}
             
             // Contact Section
             ContactSection {}
@@ -82,16 +82,54 @@ fn App() -> Element {
 pub fn GithubCard() -> Element {
     rsx! {
         div { class: "github-card",
-            a {
-                href: "https://github.com/mitdevcat",
-                target: "_blank",
-                rel: "noopener noreferrer",
+            div { class: "github-card-header",
                 img { 
                     src: GITHUB_SVG,
                     class: "github-icon",
                     alt: "GitHub"
                 }
-                {t!("nav-github")}
+                div { class: "github-card-title",
+                    h3 { "GitHub" }
+                    p { class: "github-handle", "@mitdevcat" }
+                }
+            }
+            div { class: "github-card-stats",
+                div { class: "stat",
+                    span { class: "stat-number", "15+" }
+                    span { class: "stat-label", "Repos" }
+                }
+                div { class: "stat",
+                    span { class: "stat-number", "2.5k+" }
+                    span { class: "stat-label", "Commits" }
+                }
+                div { class: "stat",
+                    span { class: "stat-number", "50+" }
+                    span { class: "stat-label", "Stars" }
+                }
+            }
+            div { class: "github-card-description",
+                p { "Building innovative solutions with modern technologies" }
+            }
+            a {
+                href: "https://github.com/mitdevcat",
+                target: "_blank",
+                rel: "noopener noreferrer",
+                class: "github-card-button",
+                span { "View Profile" }
+                svg { 
+                    class: "arrow-icon",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    width: "16",
+                    height: "16",
+                    view_box: "0 0 24 24",
+                    fill: "none",
+                    stroke: "currentColor",
+                    stroke_width: "2",
+                    stroke_linecap: "round",
+                    stroke_linejoin: "round",
+                    path { d: "M7 17L17 7" }
+                    path { d: "M7 7h10v10" }
+                }
             }
         }
     }

@@ -18,8 +18,8 @@ pub fn Hero() -> Element {
             // Sección vacía (1/3 izquierda) - ahora con texto de bienvenida
             div { class: "hero-left",
                 div { class: "hero-text",
-                    h1 { class: "hero-title", {t!("hero-welcome")} }
-                    p { class: "hero-description", {t!("hero-description")} }
+                    // h1 { class: "hero-title", {t!("hero-welcome")} }
+                    // p { class: "hero-description", {t!("hero-description")} }
                 }
             }
             
