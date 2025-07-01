@@ -1,7 +1,10 @@
 mod components;
+mod github_api;
+
 use components::header::Header;
 use components::hero::Hero;
 use components::sections::{AboutSection, ProjectsSection, ContactSection};
+use github_api::{calculate_github_stats, GitHubStats};
 use dioxus::prelude::*;
 use dioxus_i18n::{prelude::*, t, unic_langid::langid};
 
@@ -63,7 +66,7 @@ fn App() -> Element {
             // ProjectsSection {}
             
             // Contact Section
-            ContactSection {}
+            // ContactSection {}
             
             // Cards Section
             div { class: "cards-section",
@@ -80,6 +83,32 @@ fn App() -> Element {
 
 #[component]
 pub fn GithubCard() -> Element {
+    let mut github_stats = use_signal(|| GitHubStats::default());
+    let mut loading = use_signal(|| true);
+    let mut error = use_signal(|| None::<String>);
+    
+    // Load GitHub stats when component mounts
+    use_effect(move || {
+        spawn(async move {
+            loading.set(true);
+            match calculate_github_stats("msierraltav").await {
+                Ok(stats) => {
+                    github_stats.set(stats);
+                    loading.set(false);
+                    error.set(None);
+                }
+                Err(e) => {
+                    error.set(Some(e));
+                    loading.set(false);
+                }
+            }
+        });
+    });
+
+    let stats = github_stats.read();
+    let is_loading = loading.read();
+    let error_msg = error.read();
+
     rsx! {
         div { class: "github-card",
             div { class: "github-card-header",
@@ -90,28 +119,63 @@ pub fn GithubCard() -> Element {
                 }
                 div { class: "github-card-title",
                     h3 { "GitHub" }
-                    p { class: "github-handle", "@mitdevcat" }
+                    p { class: "github-handle", "@msierraltav" }
                 }
             }
             div { class: "github-card-stats",
                 div { class: "stat",
-                    span { class: "stat-number", "15+" }
+                    span { 
+                        class: "stat-number", 
+                        if *is_loading {
+                            "..."
+                        } else if error_msg.is_some() {
+                            "0"
+                        } else {
+                            "{stats.total_repos}"
+                        }
+                    }
                     span { class: "stat-label", "Repos" }
                 }
                 div { class: "stat",
-                    span { class: "stat-number", "2.5k+" }
+                    span { 
+                        class: "stat-number", 
+                        if *is_loading {
+                            "..."
+                        } else if error_msg.is_some() {
+                            "0"
+                        } else if stats.total_commits >= 1000 {
+                            "{stats.total_commits / 1000}k+"
+                        } else {
+                            "{stats.total_commits}"
+                        }
+                    }
                     span { class: "stat-label", "Commits" }
                 }
                 div { class: "stat",
-                    span { class: "stat-number", "50+" }
+                    span { 
+                        class: "stat-number", 
+                        if *is_loading {
+                            "..."
+                        } else if error_msg.is_some() {
+                            "0"
+                        } else {
+                            "{stats.total_stars}"
+                        }
+                    }
                     span { class: "stat-label", "Stars" }
                 }
             }
             div { class: "github-card-description",
-                p { "Building innovative solutions with modern technologies" }
+                p { 
+                    if error_msg.is_some() {
+                        "Error loading GitHub stats - using cached data"
+                    } else {
+                        "Building innovative solutions with modern technologies"
+                    }
+                }
             }
             a {
-                href: "https://github.com/mitdevcat",
+                href: "https://github.com/msierraltav",
                 target: "_blank",
                 rel: "noopener noreferrer",
                 class: "github-card-button",
