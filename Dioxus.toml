@@ -4,6 +4,7 @@ default_platform = "web"
 
 [web.app]
 title = "MitDevcat"
+base_path = "mitdevcat"
 
 [web.watcher]
 watch_path = ["src", "assets", "i18n"]
