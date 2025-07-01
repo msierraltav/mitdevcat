@@ -7,15 +7,16 @@
     <meta charset="UTF-8" />
   <link rel="stylesheet" href="assets/main.css">
 <link rel="stylesheet" href="assets/styles/header.css">
+<link rel="stylesheet" href="assets/styles/hero.css">
 <link rel="stylesheet" href="assets/styles/animations.css">
-<link rel="preload" as="script" href="/mitdevcat/assets/mitdevcat-7a88b94e5b164344.js" crossorigin><link rel="preload" as="fetch" type="application/wasm" href="/mitdevcat/assets/mitdevcat_bg-a997252b96e42c75.wasm" crossorigin></head>
+<link rel="preload" as="script" href="/./assets/mitdevcat-bb1ac6dcfcea5975.js" crossorigin><link rel="preload" as="fetch" type="application/wasm" href="/./assets/mitdevcat_bg-6d5ee4fe2c460314.wasm" crossorigin></head>
   <body>
     <div id="main"></div>
   <script>
             // We can't use a module script here because we need to start the script immediately when streaming
-            import("/mitdevcat/assets/mitdevcat-7a88b94e5b164344.js").then(
+            import("/./assets/mitdevcat-bb1ac6dcfcea5975.js").then(
                 ({ default: init }) => {
-                init("/mitdevcat/assets/mitdevcat_bg-a997252b96e42c75.wasm").then((wasm) => {
+                init("/./assets/mitdevcat_bg-6d5ee4fe2c460314.wasm").then((wasm) => {
                     if (wasm.__wbindgen_start == undefined) {
                     wasm.main();
                     }
