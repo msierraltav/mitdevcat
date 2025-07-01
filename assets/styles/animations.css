@@ -23,6 +23,42 @@
     }
 }
 
+/* Loading animation for stats */
+@keyframes pulse-loading {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes number-update {
+    0% {
+        opacity: 0.7;
+        transform: translateY(-2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Rotating loading symbol */
+@keyframes rotate-loading {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
 /* Layout principal */
 .app-layout {
     min-height: 100vh;
@@ -325,6 +361,31 @@
     font-weight: 700;
     color: var(--text-primary);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.github-card-stats .stat-number.loading {
+    animation: rotate-loading 2s ease-in-out infinite;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.github-card-stats .stat-number.loaded {
+    animation: number-update 0.6s ease-out forwards;
+}
+
+.github-card-stats .stat:nth-child(1) .stat-number.loaded {
+    animation-delay: 0.1s;
+}
+
+.github-card-stats .stat:nth-child(2) .stat-number.loaded {
+    animation-delay: 0.2s;
+}
+
+.github-card-stats .stat:nth-child(3) .stat-number.loaded {
+    animation-delay: 0.3s;
 }
 
 .github-card-stats .stat-label {

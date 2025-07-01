@@ -125,9 +125,9 @@ pub fn GithubCard() -> Element {
             div { class: "github-card-stats",
                 div { class: "stat",
                     span { 
-                        class: "stat-number", 
+                        class: if *is_loading { "stat-number loading" } else { "stat-number loaded" },
                         if *is_loading {
-                            "..."
+                            "⟳"
                         } else if error_msg.is_some() {
                             "0"
                         } else {
@@ -138,9 +138,9 @@ pub fn GithubCard() -> Element {
                 }
                 div { class: "stat",
                     span { 
-                        class: "stat-number", 
+                        class: if *is_loading { "stat-number loading" } else { "stat-number loaded" },
                         if *is_loading {
-                            "..."
+                            "⟳"
                         } else if error_msg.is_some() {
                             "0"
                         } else if stats.total_commits >= 1000 {
@@ -153,9 +153,9 @@ pub fn GithubCard() -> Element {
                 }
                 div { class: "stat",
                     span { 
-                        class: "stat-number", 
+                        class: if *is_loading { "stat-number loading" } else { "stat-number loaded" },
                         if *is_loading {
-                            "..."
+                            "⟳"
                         } else if error_msg.is_some() {
                             "0"
                         } else {
