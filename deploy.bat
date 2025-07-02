@@ -1,33 +1,22 @@
 @echo off
-echo Construyendo aplicacion...
-dx bundle --out-dir docs
+echo Construyendo aplicacion para produccion...
+dx build --release
 
-echo Moviendo archivos estaticos...
+echo Moviendo archivos desde docs/public a docs...
 if exist "docs\public" (
-    echo Encontrada carpeta docs\public, moviendo contenido...
-    if exist "docs\public\assets" (
-        if not exist "docs\assets" mkdir "docs\assets"
-        move "docs\public\assets\*" "docs\assets\"
+    xcopy /s /e /y "docs\public\*" "docs\" > nul
+    if %ERRORLEVEL% EQU 0 (
+        rd /s /q "docs\public"
+        echo Archivos movidos correctamente.
+    ) else (
+        echo Error al mover los archivos.
+        exit /b 1
     )
-    if exist "docs\public\wasm" (
-        if not exist "docs\wasm" mkdir "docs\wasm"
-        move "docs\public\wasm\*" "docs\wasm\"
-    )
-    move "docs\public\*" "docs\" 2>nul
-    rmdir "docs\public" 2>nul
-    echo Archivos movidos correctamente.
 ) else (
-    echo No se encontro carpeta docs\public, continuando...
+    echo La carpeta docs\public no existe. Continuando...
 )
 
-echo Verificando estructura de archivos...
-if exist "docs\assets" (
-    echo ✓ Carpeta docs\assets existe
-) else (
-    echo ✗ ADVERTENCIA: No se encontro carpeta docs\assets
-)
-
-echo Configurando routing...
+echo Configurando routing para SPA (Single Page Application)...
 copy "docs\index.html" "docs\404.html"
 
 echo Desplegando a GitHub...
@@ -36,5 +25,5 @@ git commit -m "Deploy to GitHub Pages - %date% %time%"
 git push origin main
 
 echo Despliegue completado!
-echo Tu app estara disponible en: https://tu-usuario.github.io/mitdevcat/
+echo Tu app estara disponible en: https://mitdev.cat/
 pause
