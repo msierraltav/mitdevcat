@@ -34,6 +34,25 @@ dx serve --platform desktop
 
 - Icons (Font awesomne)[https://github.com/FortAwesome/Font-Awesome]
 
+## Deploy 
+
+( deploy en github plages)[https://dioxuslabs.com/learn/0.6/cookbook/publishing/]
+
+```bash
+# build 
+dx bundle --out-dir docs
+
+# move the static content from docs/public to docs/
+mv docs/public/* docs
+
+# make a copy of docs/index.html and rename to docs/404.html
+cp docs/index.html docs/404.html
+
+# add and commit with git
+
+# push to github
+```
+
 ## TODO
 
 - [ ] first version
