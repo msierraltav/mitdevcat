@@ -1,8 +1,11 @@
-# Raspberry Pi 4 (4 GB RAM): limit parallelism so rustc doesn't OOM,
-# and keep debug artifacts small.
+# Raspberry Pi 4 (4 GB RAM).
+# jobs = 4: the dependency graph is small now (~60 crates), so rustc fits.
+# debug = 0: debug info is the largest single cost and we never breakpoint a
+#            static site generator.
+# incremental = true: the whole point of the migration is a fast inner loop.
 [build]
-jobs = 2
+jobs = 4
 
 [profile.dev]
 debug = 0
-incremental = false
+incremental = true
