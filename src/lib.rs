@@ -2,3 +2,4 @@
 //! emitted as static HTML.
 
 pub mod content;
+pub mod render;
