@@ -1,0 +1,21 @@
+/* ============================================================================
+   M2: Layout base
+   ============================================================================
+   Reglas de estructura: contenedor central, secciones, reset mínimo.
+
+   Tu tarea en M2:
+   1. Reset mínimo (* { margin: 0; box-sizing: border-box; }).
+   2. Un .container central con max-width (750-950px para un portafolio).
+   3. La clase .section que usan About/Projects/Contact: padding vertical
+      generoso con las variables de espaciado.
+   4. Tipografía base en body (familia, tamaño, line-height).
+
+   Tip de mentor: con estas 4 cosas y las variables ya podés maquetar TODO
+   el sitio. Resistí la tentación de agregar más clases "por si acaso":
+   CSS se escribe cuando hay un componente que lo necesita.
+   ========================================================================== */
+
+/* TODO M2: reset mínimo */
+/* TODO M2: .container */
+/* TODO M2: .section */
+/* TODO M2: tipografía base */

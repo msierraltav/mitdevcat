@@ -21,13 +21,31 @@ project/
 Run the following command in the root of your project to start developing with the default platform:
 
 ```bash
-dx serve
+dx serve            # dev server with hot-reload -> http://localhost:8080
+dx build --platform web   # production-style build check
 ```
 
 To run for a different platform, use the `--platform platform` flag. E.g.
 ```bash
 dx serve --platform desktop
 ```
+
+### Raspberry Pi notes (4 GB RAM, aarch64)
+
+This project is developed on a Raspberry Pi 4. Some hard-won rules:
+
+- **Never `cargo install dioxus-cli` on the Pi.** Install the prebuilt `dx`
+  binary instead:
+  ```bash
+  curl -fsSL https://dioxus.dev/install.sh | bash
+  ```
+- `.cargo/config.toml` pins `jobs = 2` so `rustc` doesn't exhaust the 4 GB of RAM
+  (full-parallel builds OOM here). Builds take ~4 min wasm / ~8 min full dx build.
+- `/tmp` is a 1.9 GB tmpfs: `cargo install` builds there and dies with
+  `No space left on device` even when the SD card has plenty of room.
+- Wasm target must be installed: `rustup target add wasm32-unknown-unknown`.
+
+Stack: Dioxus 0.7 + dioxus-i18n 0.5 (migrated from 0.6, dx 0.7 requires 0.7).
 
 
 ## Resources
@@ -36,7 +54,7 @@ dx serve --platform desktop
 
 ## Deploy 
 
-( deploy en github plages)[https://dioxuslabs.com/learn/0.6/cookbook/publishing/]
+( deploy en github pages)[https://dioxuslabs.com/learn/0.7/cookbook/publishing/]
 
 ```bash
 # build 

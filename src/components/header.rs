@@ -1,50 +1,30 @@
-use dioxus::prelude::*;
-use dioxus_i18n::t;
-use crate::ThemeContext;
-use crate::components::language_selector::LanguageSelector;
+// ============================================================================
+// M3: Header nuevo
+// ============================================================================
+// Objetivo: barra superior fija con:
+//   - Logo (usar Mit-logo-light.png / Mit-logo-dark.png, ya en assets/)
+//   - Navegación (anclas a About, Projects, Contact)
+//   - Toggle de tema claro/oscuro (llega en M5)
+//   - Selector de idioma (llega en M6)
+//
+// Conceptos nuevos en este milestone:
+//   - asset!() para importar imágenes
+//   - Props de componente (parámetros de la fn)
+//   - Anclas HTML: a { href: "#about" }
+//
+// Cómo activarlo cuando trabajes este milestone:
+//   1. Descomentá el bloque de abajo.
+//   2. En src/components/mod.rs descomentá: `pub mod header;`
+//   3. En src/main.rs: `use components::header::Header;` y agregá `<Header />`
+//      dentro de rsx! antes de `<Hero />`.
 
-#[component]
-pub fn Header() -> Element {
-    let mut theme_context = use_context::<Signal<ThemeContext>>();
-    
-    let toggle_theme = move |_| {
-        let current_theme = theme_context();
-        theme_context.set(ThemeContext { is_dark: !current_theme.is_dark });
-        
-        // Llamar a la función JavaScript global
-        let _ = web_sys::js_sys::eval("window.toggleTheme()");
-    };
-    
-    rsx! {
-        header { class: "main-header",
-            // Logo/Brand
-            div { class: "header-brand",
-                span { {t!("header-home")} }
-            }
-            
-            // Navigation and controls
-            div { class: "header-controls",
-                // Language selector
-                LanguageSelector {}
-                
-                // Theme toggle button
-                button { 
-                    class: "theme-toggle",
-                    onclick: toggle_theme,
-                    title: if theme_context().is_dark { 
-                        "Light theme" 
-                    } else { 
-                        "Dark theme" 
-                    },
-                    span { class: "theme-icon",
-                        if theme_context().is_dark {
-                            "☀️"
-                        } else {
-                            "🌙"
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
+// use dioxus::prelude::*;
+//
+// #[component]
+// pub fn Header() -> Element {
+//     rsx! {
+//         header { class: "header",
+//             // TODO M3: logo + nav + (M5) toggle tema + (M6) idiomas
+//         }
+//     }
+// }

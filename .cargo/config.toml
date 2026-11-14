@@ -1,0 +1,8 @@
+# Raspberry Pi 4 (4 GB RAM): limit parallelism so rustc doesn't OOM,
+# and keep debug artifacts small.
+[build]
+jobs = 2
+
+[profile.dev]
+debug = 0
+incremental = false

@@ -1,0 +1,37 @@
+/* ============================================================================
+   M2: Variables de diseño (el corazón del nuevo diseño)
+   ============================================================================
+   Este archivo define la identidad visual del sitio. Estrategia:
+   TODOS los colores viven aquí como variables; ningún otro CSS
+   escribe un color "pelado" (ni #fff, ni rgb(), ni nada).
+
+   Cuando llegue M5 (modo claro/oscuro), el bloque [data-theme="dark"]
+   solo redefinirá estas variables: el resto del CSS no se entera.
+
+   Tu tarea en M2:
+   1. Elegir tipografía (Google Fonts: 1 familia para títulos, 1 para texto
+      o la misma con distintos pesos).
+   2. Elegir paleta: 1 color de acento + fondo/superficie/texto.
+   3. Definir escala de espaciado (4px base: 4, 8, 16, 24, 32, 48, 64...).
+
+   Tip de mentor: no elijas colores "porque sí". Elegí un color de acento
+   que te guste y derivá el resto con https://coolors.co o similar.
+   ========================================================================== */
+
+:root {
+  /* TODO M2: paleta clara (tema por defecto) */
+  /* --color-bg: ...;          fondo de la página */
+  /* --color-surface: ...;     tarjetas, header */
+  /* --color-text: ...;        texto principal */
+  /* --color-accent: ...;      color de acento (links, botones) */
+
+  /* TODO M2: tipografía */
+  /* --font-heading: ...; */
+  /* --font-body: ...; */
+
+  /* TODO M2: escala de espaciado */
+  /* --space-1: 0.25rem; ... */
+}
+
+/* TODO M5: aquí irá el bloque [data-theme="dark"] que solo redefinirá
+   las variables de arriba, sin tocar ningún componente. */
