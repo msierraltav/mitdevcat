@@ -1,0 +1,98 @@
+/* mitdevcat — the page is a cell grid.
+   Only the metrics of a terminal matter: monospace, one line per row,
+   one column per character. No layout engine. */
+
+:root {
+  --bg: #0d1117;
+  --fg: #c9d1d9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  font-family: ui-monospace, "JetBrains Mono", "Fira Code", "Cascadia Mono",
+    monospace;
+}
+
+/* One <pre> per column budget. The cascade picks exactly one. */
+pre.term {
+  margin: 0;
+  padding: 24px 16px;
+  line-height: 1.25;
+  font-size: 13px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+pre.w40,
+pre.w60,
+pre.w100 {
+  display: none;
+}
+
+pre.w40 {
+  display: block;
+}
+
+@media (min-width: 560px) {
+  pre.w40 {
+    display: none;
+  }
+  pre.w60 {
+    display: block;
+  }
+}
+
+@media (min-width: 900px) {
+  pre.w60 {
+    display: none;
+  }
+  pre.w100 {
+    display: block;
+  }
+}
+
+/* Accessible summary: real HTML for screen readers and crawlers,
+   invisible to the grid. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Palette: one class per ratatui color. */
+.f-black { color: #484f58; }
+.f-red { color: #ff7b72; }
+.f-green { color: #7ee787; }
+.f-yellow { color: #d29922; }
+.f-blue { color: #79c0ff; }
+.f-magenta { color: #bc8cff; }
+.f-cyan { color: #39c5cf; }
+.f-gray { color: #8b949e; }
+.f-darkgray { color: #6e7681; }
+.f-white { color: #f0f6fc; }
+.f-lightred { color: #ffa198; }
+.f-lightgreen { color: #7ee787; }
+.f-lightyellow { color: #e3b341; }
+.f-lightblue { color: #a5d6ff; }
+.f-lightmagenta { color: #d2a8ff; }
+.f-lightcyan { color: #56d4dd; }
+
+.bold { font-weight: 700; }
+.italic { font-style: italic; }
+.dim { opacity: 0.6; }
